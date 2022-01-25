@@ -102,3 +102,64 @@
                   return total + n.volume;
                 }, 0)}
               </td>
+
+
+              //////
+
+
+  <script>
+    class Relogio {
+      constructor() {
+        this._segundos = 0;
+
+        setInterval(() => {
+          console.log(this);
+        }, 1000);
+      }
+    }
+
+    var relogio = new Relogio();
+</script>
+
+
+
+////////////////
+
+
+class NegociacaoController {
+
+    constructor() {
+
+        // a variável self guarda uma referência para this, instância de NegociacaoController
+
+        let self = this;
+
+        // aqui usei uma function tradicional, mas poderia ser uma arrow function também
+
+        this._listaNegociacoes = new ListaNegociacoes(function(model) { 
+            self._negociacoesView.update(model);
+        });
+    }
+
+    // código posterior omitido
+}
+
+
+//////////////////
+
+<script>
+  let objeto1 = {
+    nome: 'Bob',
+  };
+
+  let objeto2 = {
+    nome: 'Leo',
+  };
+
+  function exibeNome(pref, suf) {
+    alert(pref + this.nome + suf);
+  }
+
+  Reflect.apply(exibeNome, objeto1, ['(', ')']); // exibe 'Bob'
+</script>
+
