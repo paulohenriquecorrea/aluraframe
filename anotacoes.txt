@@ -163,3 +163,31 @@ class NegociacaoController {
   Reflect.apply(exibeNome, objeto1, ['(', ')']); // exibe 'Bob'
 </script>
 
+
+// aluraframe/client/js/app/polyfill/es6.js
+
+if(!Array.prototype.includes) {
+
+    // Se não existir, adiciona
+
+    console.log('Polyfill para Array.includes aplicado.');
+
+    Array.prototype.includes = function(elemento) {
+        return this.indexOf(elemento) != -1;
+    };
+}
+<!-- aluraframe/client/index.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Negociações</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.css">
+
+    <!-- carregando nosso polyfill -->
+    <script src="js/app/polyfill/es6.js"></script>
+
+</head>
+

@@ -44,7 +44,7 @@
         Enviar dados para servidor
       </button>
     </form>
-
+    <script src="js/app/services/HttpService.js"></script>
     <script>
       function sendPost(event) {
         event.preventDefault();
@@ -61,24 +61,39 @@
           valor: valor.value,
         };
 
+        //========================
+        //Envio usando o serviço HttpService.js
+        new HttpService()
+          .post('/negociacoes', negociacao)
+          .then(() => {
+            data.value = '';
+            quantidade.value = '1';
+            valor.value = 0;
+            data.focus();
+            alert('Negociação enviada com sucesso');
+          })
+          .catch((erro) =>
+            alert(`Não foi possível envir a negociação: ${erro}`)
+          );
+
         //enviar o XMLHttpRequest
-        let xhr = new XMLHttpRequest();
-        xhr.open('POST', '/negociacoes', true);
-        xhr.setRequestHeader('Content-type', 'application/json');
-        xhr.onreadystatechange = () => {
-          if (xhr.readyState == 4) {
-            if (xhr.status == 200) {
-              data.value = '';
-              quantidade.value = '1';
-              valor.value = 0;
-              data.focus();
-              alert('Negociação enviada com sucesso');
-            } else {
-              alert('Não foi possível enviar a negociação');
-            }
-          }
-        };
-        xhr.send(JSON.stringify(negociacao));
+        // let xhr = new XMLHttpRequest();
+        // xhr.open('POST', '/negociacoes', true);
+        // xhr.setRequestHeader('Content-type', 'application/json');
+        // xhr.onreadystatechange = () => {
+        //   if (xhr.readyState == 4) {
+        //     if (xhr.status == 200) {
+        //       data.value = '';
+        //       quantidade.value = '1';
+        //       valor.value = 0;
+        //       data.focus();
+        //       alert('Negociação enviada com sucesso');
+        //     } else {
+        //       alert('Não foi possível enviar a negociação');
+        //     }
+        //   }
+        // };
+        // xhr.send(JSON.stringify(negociacao));
       }
     </script>
   </body>
